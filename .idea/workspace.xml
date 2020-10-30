@@ -25,6 +25,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -35,7 +36,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604067477053</updated>
-      <workItem from="1604067478058" duration="3379000" />
+      <workItem from="1604067478058" duration="8772000" />
     </task>
     <servers />
   </component>
@@ -47,5 +48,9 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="239" y="76" key="SettingsEditor/-1680.-617.1680.1050/0.0.1680.1050@0.0.1680.1050" timestamp="1604071516479" />
+    <state x="479" y="234" width="721" height="582" key="find.popup" timestamp="1604074992631">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="479" y="234" width="721" height="582" key="find.popup/-1680.-617.1680.1050/0.0.1680.1050@0.0.1680.1050" timestamp="1604074992631" />
   </component>
 </project>

@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 
+var user = require('./routes/user.routes')
 const app = express()
 
 // parse requests of content-type: application/json
@@ -13,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." })
 })
+
+// Add Users routes
+app.use('/users', user)
 
 // set port, listen for requests
 app.listen(3000, () => {

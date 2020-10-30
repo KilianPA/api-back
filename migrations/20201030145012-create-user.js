@@ -11,7 +11,7 @@ module.exports = {
       name: {
         "type": Sequelize.STRING,
         "field": "name",
-        "unique": true,
+        "unique": false,
         "allowNull": false
       },
       surname: {
@@ -43,6 +43,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('user');
   }
 };
