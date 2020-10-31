@@ -1,0 +1,21 @@
+{
+  "name": "api-back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/KilianPA/api-back.git",
+  "author": "<kilianpasini@hotmail.fr>",
+  "license": "MIT",
+  "scripts": {
+    "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5",
+    "sequelize-auto-migrations": "^1.0.3",
+    "sequelize-cli": "^6.2.0"
+  }
+}
