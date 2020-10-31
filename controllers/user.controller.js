@@ -1,4 +1,5 @@
 const db = require('../models')
+const { encrypt } = require('../utils/encryptPassword')
 const { body, validationResult } = require('express-validator')
 const User = db.User
 
@@ -6,6 +7,7 @@ const User = db.User
 exports.create = (req, res) => {
 
     body('name').not().isEmpty()
+    body('email').not().isEmpty().isEmail()
     body('surname').not().isEmpty()
     body('password').not().isEmpty()
     body('date').isDate()
@@ -16,10 +18,12 @@ exports.create = (req, res) => {
     }
     const user = {
         name: req.body.name,
+        email: req.body.email,
         surname: req.body.surname,
-        password: req.body.password,
+        password: encrypt(req.body.password),
         birthday: req.body.birthday
     };
+
     User.create(user)
         .then(data => {
             return res.status(200).json({data: data})
@@ -98,3 +102,7 @@ exports.findById = (req, res) => {
             return res.status(404).json({ error: 'User not found'})
         });
 };
+
+exports.findByParams = async (req, res) => {
+    return await User.findOne({where: req})
+}
