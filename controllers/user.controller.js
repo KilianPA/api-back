@@ -29,7 +29,7 @@ exports.create = (req, res) => {
             return res.status(200).json({data: data})
         })
         .catch(err => {
-            return res.status(500).json({ error: 'Error during creating'})
+            return res.status(500).json({ error: err})
         });
 };
 
@@ -42,7 +42,7 @@ exports.update = (req, res) => {
     })
         .then((num) => {
             if (num == 1) {
-                const user = User.findByPk(id).then(data => {
+                User.findByPk(id).then(data => {
                     if (data) {
                         return res.status(200).json({data: data})
                     }
@@ -52,7 +52,7 @@ exports.update = (req, res) => {
             }
         })
         .catch(err => {
-            return res.status(500).json({ error: 'Error during updating'})
+            return res.status(500).json({ error: err})
         });
 };
 
@@ -63,7 +63,6 @@ exports.delete = (req, res) => {
         where: { id: id }
     })
         .then(num => {
-            console.log(num == 1)
             if (num == 1) {
                 return res.status(204).send()
             } else {
@@ -71,7 +70,7 @@ exports.delete = (req, res) => {
             }
         })
         .catch(err => {
-            return res.status(500).json({ error: 'Error during deleting'})
+            return res.status(500).json({ error: err})
         });
 };
 
@@ -81,10 +80,7 @@ exports.findAll = (req, res) => {
             res.send(data);
         })
         .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving tutorials."
-            });
+            return res.status(500).json({ error: err})
         });
 };
 
@@ -99,7 +95,7 @@ exports.findById = (req, res) => {
             }
         })
         .catch(err => {
-            return res.status(404).json({ error: 'User not found'})
+            return res.status(500).json({ error: err})
         });
 };
 
