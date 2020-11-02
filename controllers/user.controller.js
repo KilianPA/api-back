@@ -1,6 +1,6 @@
 const db = require('../models')
-const { encrypt } = require('../utils/encryptPassword')
-const { body, validationResult } = require('express-validator')
+const {encrypt} = require('../utils/encryptPassword')
+const {body, validationResult} = require('express-validator')
 const User = db.User
 
 
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() })
+        return res.status(400).json({errors: errors.array()})
     }
     const user = {
         name: req.body.name,
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
             return res.status(200).json({data: data})
         })
         .catch(err => {
-            return res.status(500).json({ error: err})
+            return res.status(500).json({error: err})
         });
 };
 
@@ -38,7 +38,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     User.update(req.body, {
-        where: { id: id }
+        where: {id: id}
     })
         .then((num) => {
             if (num == 1) {
@@ -48,11 +48,11 @@ exports.update = (req, res) => {
                     }
                 })
             } else {
-                return res.status(404).json({ error: 'User not found'})
+                return res.status(404).json({error: 'User not found'})
             }
         })
         .catch(err => {
-            return res.status(500).json({ error: err})
+            return res.status(500).json({error: err})
         });
 };
 
@@ -60,42 +60,50 @@ exports.delete = (req, res) => {
     const id = req.params.id
 
     User.destroy({
-        where: { id: id }
+        where: {id: id}
     })
         .then(num => {
             if (num == 1) {
                 return res.status(204).send()
             } else {
-                return res.status(404).json({ error: 'User not found'})
+                return res.status(404).json({error: 'User not found'})
             }
         })
         .catch(err => {
-            return res.status(500).json({ error: err})
+            return res.status(500).json({error: err})
         });
 };
 
 exports.findAll = (req, res) => {
-    User.findAll()
+    User.findAll({
+        attributes: {
+            exclude: ['password']
+        }
+    })
         .then(data => {
             res.send(data);
         })
         .catch(err => {
-            return res.status(500).json({ error: err})
+            return res.status(500).json({error: err})
         });
 };
 
 exports.findById = (req, res) => {
     const id = req.params.id
-    User.findByPk(id)
+    User.findByPk(id, {
+        attributes: {
+            exclude: ['password']
+        }
+    })
         .then(data => {
             if (data) {
-                return res.status(200).json({ data: data})
+                return res.status(200).json({data: data})
             } else {
-                return res.status(404).json({ error: 'User not found'})
+                return res.status(404).json({error: 'User not found'})
             }
         })
         .catch(err => {
-            return res.status(500).json({ error: err})
+            return res.status(500).json({error: err})
         });
 };
 
